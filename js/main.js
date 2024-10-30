@@ -23,7 +23,7 @@ function uploadStory() {
         formData.append('storyFile', storyFile);
 
         // Send the data to the server (placeholder URL)
-        fetch('http://localhost/LogoDesign/php/upload_story.php', {
+        fetch('/LogoDesign/php/upload_story.php', {
             method: 'POST',
             body: formData
         })
@@ -81,7 +81,7 @@ function uploadproject() {
         formData.append('projectFile', fileInput.files[0]);
 
         // Send the data to the server (replace URL with actual upload endpoint)
-        fetch('http://localhost/LogoDesign/php/upload_project.php', {
+        fetch('/LogoDesign/php/upload_project.php', {
             method: 'POST',
             body: formData
         })
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost/LogoDesign/php/fetch_stories_projects.php')
+    fetch('/LogoDesign/php/fetch_stories_projects.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 projectItem.innerHTML = `
 
                 <a href="details.html?id=${project.id}" class="image-link">
-                        <img src="http://localhost/LogoDesign/uploads/${project.image}" alt="Work by ${project.artist}">
+                        <img src="/LogoDesign/uploads/${project.image}" alt="Work by ${project.artist}">
                     </a>
                     <div class="details">
                         <p class="artist-name">${project.artist}</p>
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to handle liking a project
 function likeProject(projectId) {
-    fetch(`http://localhost/LogoDesign/php/like_project.php`, {
+    fetch(`/LogoDesign/php/like_project.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ projectId: projectId })
@@ -211,7 +211,7 @@ function submitComment(projectId) {
     const commentText = document.getElementById(`commentInput-${projectId}`).value;
     if (commentText.trim() === '') return;
 
-    fetch(`http://localhost/LogoDesign/php/comment_project.php`, {
+    fetch(`/LogoDesign/php/comment_project.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ projectId: projectId, comment: commentText })
