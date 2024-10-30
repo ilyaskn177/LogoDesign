@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
                 projectItem.innerHTML = `
                     <a href="details.html?id=${project.id}" class="image-link">
-                        <img src="/LogoDesign/uploads/${project.image}" alt="Work by ${project.artist}">
+                        <img src="http://localhost/LogoDesign/uploads/${project.image}" alt="Work by ${project.artist}">
                     </a>
                     <div class="details">
                         <p class="artist-name">${project.artist}</p>
