@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Design</title>
+    <link rel="stylesheet" href="http://localhost/LogoDesign/css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Logo Design</div>
+        <nav>
+            <ul>
+                <li><a href="#">Order Place</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Software</a></li>
+            </ul>
+        </nav>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for projects, creators...">
+        </div>
+
+        <div class="project-upload-icon" onclick="openProjectFileChooser()">
+            <img src="http://localhost/LogoDesign/images/story_icon.png" alt="Upload Project" class="upload-icon">
+        </div>
+        <form action="http://localhost/LogoDesign/php/upload_project.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
+            <input type="file" name="projectFile" id="projectFile" onchange="showProjectUploadDialog()" required>
+        </form>
+
+        <div id="overlay" class="overlay" onclick="closeDialogBox()"></div>
+
+        <div id="project-dailog" class="project-dailog">
+            <h3>Upload Project</h3>
+            <input type="text" name="fileNameInput" id="fileNameInput" placeholder="Enter file name..." required maxlength="50">
+            <textarea name="projectText" id="projectText" placeholder="Write something about your Project..." required maxlength="50"></textarea>
+            <div id="fileNameDisplay" class="file-name"></div>
+            <div id="projectCharCount" class="char-count">0 / 50 characters</div>
+            <button onclick="uploadproject()">Upload</button>
+            <button onclick="closeProjectUploadDialog()">Cancel</button>
+        </div>
+
+        <div class="profile">
+            <img src="http://localhost/LogoDesign/images/image1.webp" alt="Profile" class="profile-pic">
+        </div>
+    </header>
+
+    <!-- Profile Stories -->
+    <section id="stories-section" class="stories">
+
+        <!-- Story Upload Icon -->
+    <div class="story-upload-icon" onclick="openFileChooser()">
+        <img src="http://localhost/LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
+    </div>
+
+    <!-- Hidden Upload Form -->
+    <form action="http://localhost/LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
+        <input type="file" name="storyFile" id="storyFile" onchange="showDialogBox()" required>
+    </form>
+
+    <!-- Overlay for Blurred Background -->
+    <div id="overlay" class="overlay" onclick="closeDialogBox()"></div>
+
+    <!-- Dialog Box for Adding Story Text and Uploading -->
+    <div id="story-dialog" class="story-dialog">
+        <h3>Upload Story</h3>
+        <textarea name="storyText" id="storyText" placeholder="Write something about your story..." required maxlength="50"></textarea>
+        <div id="charCount" class="char-count">0 / 50 characters</div>
+        <button onclick="uploadStory()">Upload</button>
+        <button onclick="closeDialogBox()">Cancel</button>
+    </div>
+
+        <div class="story">
+            <img src="http://localhost/LogoDesign/images/image1.webp" alt="Story 2">
+        </div>
+        <!-- Add more story items as needed -->
+    </section>
+
+    <!-- Projects Section -->
+    <h2 class="projects-title">Projects</h2>
+
+    <div class="slider-container">
+
+         <!-- Grid Section -->
+    <section id="projects-section" class="grid">
+           
+           <!-- Add more grid items as needed -->
+       </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Logo Design</h3>
+                <p>Your one-stop solution for creative logo designs and branding needs.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+                    <li><a href="mailto:info@logodesign.com">Email Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-details">
+                <p>&copy; 2024 Logo Design. All rights reserved.</p>
+                <p>1234 Logo St, Design City, Country</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="http://localhost/LogoDesign/js/main.js"></script> <!-- Fixed script name -->
+</body>
+</html>
