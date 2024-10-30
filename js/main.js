@@ -23,7 +23,7 @@ function uploadStory() {
         formData.append('storyFile', storyFile);
 
         // Send the data to the server (placeholder URL)
-        fetch('/LogoDesign/php/upload_story.php', {
+        fetch('http://localhost/LogoDesign/php/upload_story.php', {
             method: 'POST',
             body: formData
         })
@@ -81,7 +81,7 @@ function uploadproject() {
         formData.append('projectFile', fileInput.files[0]);
 
         // Send the data to the server (replace URL with actual upload endpoint)
-        fetch('/LogoDesign/php/upload_project.php', {
+        fetch('http://localhost/LogoDesign/php/upload_project.php', {
             method: 'POST',
             body: formData
         })
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('/LogoDesign/php/fetch_stories_projects.php')
+    fetch('http://localhost/LogoDesign/php/fetch_stories_projects.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -154,23 +154,25 @@ document.addEventListener('DOMContentLoaded', function () {
             // Debugging: Log data to verify structure
             console.log("Fetched data:", data);
 
-            // Iterate through projects
             data.projects.forEach(project => {
                 // Create the project item
                 const projectItem = document.createElement('a');
                 projectItem.href = `details.html?id=${project.id}`;
                 projectItem.classList.add('grid-item');
-
+            
                 projectItem.innerHTML = `
-
-                <a href="details.html?id=${project.id}" class="image-link">
-                        <img src="/LogoDesign/uploads/${project.image}" alt="Work by ${project.artist}">
+                    <a href="details.html?id=${project.id}" class="image-link">
+                        <img src="http://localhost/LogoDesign/uploads/${project.image}" alt="Work by ${project.artist}">
                     </a>
                     <div class="details">
                         <p class="artist-name">${project.artist}</p>
                         <div class="actions">
-                            <span class="likes" onclick="toggleLike(event, this)">${project.likes} Likes</span>
-                            <span class="comments" onclick="toggleCommentBox(event, this)">${project.comments} Comments</span>
+                            <span class="likes" style="margin-right: 15px;" onclick="toggleLike(event, this, ${project.id})">
+                                <i class="fas fa-thumbs-up"></i> ${project.likes}
+                            </span>
+                            <span class="comments" onclick="toggleCommentBox(event, ${project.id})">
+                                <i class="fas fa-comments"></i> ${project.comments}
+                            </span>
                         </div>
                         <div class="comment-box" id="commentsSection-${project.id}" style="display: none;">
                             <input type="text" id="commentInput-${project.id}" placeholder="Add a comment..." onkeypress="submitComment(event, ${project.id})">
@@ -178,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </div>
                 `;
-
+            
                 projectSection.appendChild(projectItem);
             });
         })
@@ -186,8 +188,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Function to handle liking a project
+function toggleLike(event, element, projectId) {
+    event.stopPropagation(); // Prevents the click from reaching the projectItem link
+    event.preventDefault(); // Prevents the default action
+
+    // Call your existing like project functionality
+    likeProject(projectId);
+}
+
+// Function to toggle the comment box
+function toggleCommentBox(event, projectId) {
+    event.stopPropagation(); // Prevents the click from reaching the projectItem link
+    event.preventDefault(); // Prevents the default action
+
+    const commentSection = document.getElementById(`commentsSection-${projectId}`);
+    commentSection.style.display = commentSection.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to handle liking a project
 function likeProject(projectId) {
-    fetch(`/LogoDesign/php/like_project.php`, {
+    fetch(`http://localhost/LogoDesign/php/like_project.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ projectId: projectId })
@@ -200,18 +220,12 @@ function likeProject(projectId) {
     });
 }
 
-// Function to toggle the comment box
-function toggleCommentBox(projectId) {
-    const commentSection = document.getElementById(`commentsSection-${projectId}`);
-    commentSection.style.display = commentSection.style.display === 'none' ? 'block' : 'none';
-}
-
 // Function to submit a comment
 function submitComment(projectId) {
     const commentText = document.getElementById(`commentInput-${projectId}`).value;
     if (commentText.trim() === '') return;
 
-    fetch(`/LogoDesign/php/comment_project.php`, {
+    fetch(`http://localhost/LogoDesign/php/comment_project.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ projectId: projectId, comment: commentText })
