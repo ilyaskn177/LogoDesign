@@ -1,8 +1,13 @@
 <?php
 
-header("Access-Control-Allow-Origin: *"); // Allow all origins
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Allow specific methods
-header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With"); // Allow specific headers
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+
+// Handle preflight requests
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit(0);
+}
 
 $host = 'localhost';
 $db = 'logodesign_db';
@@ -40,4 +45,4 @@ $conn->close();
 // Return the projects data as JSON
 header('Content-Type: application/json');
 echo json_encode(['projects' => $projects]);
-?>
+?> 
