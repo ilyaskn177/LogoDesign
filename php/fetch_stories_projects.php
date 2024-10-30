@@ -1,5 +1,9 @@
 <?php
 
+header("Access-Control-Allow-Origin: *"); // Allow all origins
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Allow specific methods
+header("Access-Control-Allow-Headers: Content-Type"); // Allow specific headers
+
 $host = 'localhost';
 $db = 'logodesign_db';
 $user = 'root';
