@@ -1,4 +1,9 @@
 <?php
+// CORS headers
+header("Access-Control-Allow-Origin: *"); // Allow all origins
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // Allowed methods
+header("Access-Control-Allow-Headers: Content-Type"); // Allowed headers
+
 // Database configuration
 $host = 'localhost'; 
 $dbname = 'logodesign_db'; 
