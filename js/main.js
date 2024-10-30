@@ -23,7 +23,7 @@ function uploadStory() {
         formData.append('storyFile', storyFile);
 
         // Send the data to the server (placeholder URL)
-        fetch('http://localhost/LogoDesign/php/upload_story.php', {
+        fetch('http://192.168.43.252/LogoDesign/php/upload_story.php', {
             method: 'POST',
             body: formData
         })
@@ -81,7 +81,7 @@ function uploadproject() {
         formData.append('projectFile', fileInput.files[0]);
 
         // Send the data to the server (replace URL with actual upload endpoint)
-        fetch('http://localhost/LogoDesign/php/upload_project.php', {
+        fetch('http://192.168.43.252/LogoDesign/php/upload_project.php', {
             method: 'POST',
             body: formData
         })
@@ -93,7 +93,7 @@ function uploadproject() {
             // Optionally, refresh the project list or do something else
         })
         .catch(error => {
-            console.error('Error during upload:', error);
+            console.error('Error during project upload:', error);
         });
     } else {
         alert('Please fill in all fields.');
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost/LogoDesign/php/fetch_stories_projects.php')
+    fetch('http://192.168.43.252/LogoDesign/php/fetch_stories_projects.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -207,7 +207,7 @@ function toggleCommentBox(event, projectId) {
 
 // Function to handle liking a project
 function likeProject(projectId) {
-    fetch(`http://localhost/LogoDesign/php/like_project.php`, {
+    fetch(`http://192.168.43.252/LogoDesign/php/like_project.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ projectId: projectId })
@@ -225,7 +225,7 @@ function submitComment(projectId) {
     const commentText = document.getElementById(`commentInput-${projectId}`).value;
     if (commentText.trim() === '') return;
 
-    fetch(`http://localhost/LogoDesign/php/comment_project.php`, {
+    fetch(`http://192.168.43.252/LogoDesign/php/comment_project.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ projectId: projectId, comment: commentText })
