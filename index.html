@@ -27,7 +27,7 @@
         <div class="project-upload-icon" onclick="openProjectFileChooser()">
             <img src="LogoDesign/images/story_icon.png" alt="Upload Project" class="upload-icon">
         </div>
-        <form action="LogoDesign/php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
+        <form action="/LogoDesign/php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
             <input type="file" name="projectFile" id="projectFile" onchange="showProjectUploadDialog()" required>
         </form>
 
@@ -42,7 +42,7 @@
         </div>
 
         <div class="profile">
-            <img src="LogoDesign/images/profile.jpg" alt="Profile" class="profile-pic">
+            <img src="/LogoDesign/images/profile.jpg" alt="Profile" class="profile-pic">
         </div>
     </header>
 
@@ -52,11 +52,11 @@
 <section class="stories" id="stories">
     <!-- Story Upload Icon -->
     <div class="story-upload-icon" onclick="openFileChooser()">
-        <img src="LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
+        <img src="/LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
     </div>
 
     <!-- Hidden Upload Form -->
-    <form action="LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
+    <form action="/LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
         <input type="file" name="storyFile" id="storyFile" onchange="showDialogBox()" required>
     </form>
 
@@ -74,7 +74,7 @@
 
     <!-- Existing Stories -->
     <div class="story">
-        <img src="LogoDesign/images/image1.jpg" alt="Story 2">
+        <img src="/LogoDesign/images/image1.jpg" alt="Story 2">
     </div>
 </section>
 
@@ -90,7 +90,7 @@
         <!-- Grid Item 1 -->
         <div class="grid-item">
             <a href="details.html?id=1" class="image-link" style="position: relative;">
-                <img src="LogoDesign/images/image1.jpg" alt="Work 1" class="grid-image">
+                <img src="/LogoDesign/images/image1.jpg" alt="Work 1" class="grid-image">
                 <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
@@ -113,7 +113,7 @@
         <!-- Grid Item 2 -->
         <div class="grid-item">
             <a href="details.html?id=1" class="image-link" style="position: relative;">
-                <img src="LogoDesign/images/image2.jpg" alt="Work 1" class="grid-image">
+                <img src="/LogoDesign/images/image2.jpg" alt="Work 1" class="grid-image">
                 <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
@@ -484,7 +484,7 @@
         </div>
     </footer>
 
-    <script src="LogoDesign/js/details.js"></script>
-    <script src="LogoDesign/js/mian.js"></script>
+    <script src="/LogoDesign/js/details.js"></script>
+    <script src="/LogoDesign/js/mian.js"></script>
 </body>
 </html>
