@@ -24,9 +24,9 @@
         </div>
 
         <div class="project-upload-icon" onclick="openProjectFileChooser()">
-            <img src="/images/story_icon.png" alt="Upload Project" class="upload-icon">
+            <img src="/LogoDesign/images/story_icon.png" alt="Upload Project" class="upload-icon">
         </div>
-        <form action="php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
+        <form action="/LogoDesign/php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
             <input type="file" name="projectFile" id="projectFile" onchange="showProjectUploadDialog()" required>
         </form>
 
@@ -41,7 +41,7 @@
         </div>
 
         <div class="profile">
-            <img src="/images/profile.jpg" alt="Profile" class="profile-pic">
+            <img src="/LogoDesign/images/profile.jpg" alt="Profile" class="profile-pic">
         </div>
     </header>
 
@@ -49,11 +49,11 @@
 <section class="stories">
     <!-- Story Upload Icon -->
     <div class="story-upload-icon" onclick="openFileChooser()">
-        <img src="/images/story_icon.png" alt="Upload Story" class="upload-icon">
+        <img src="/LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
     </div>
 
     <!-- Hidden Upload Form -->
-    <form action="php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
+    <form action="/LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
         <input type="file" name="storyFile" id="storyFile" onchange="showDialogBox()" required>
     </form>
 
