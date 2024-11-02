@@ -11,19 +11,32 @@ body {
     padding: 20px;
 }
 
-/* Header */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    height: 1000px;
+}
+
+/* header styling */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 30px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #f8f8f8;
-    padding: 20px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-header .logo {
-    font-size: 24px;
-    font-weight: bold;
 }
 
 header nav {
@@ -35,6 +48,8 @@ header nav {
 header nav ul {
     display: flex;
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 header nav ul li {
@@ -50,6 +65,65 @@ header nav ul li a {
 
 header nav ul li a:hover {
     color: #007BFF;
+}
+
+body {
+    margin: 0;
+    padding-top: 100px;
+}
+
+.header-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.header-logo, .header-links {
+    flex: 1;
+}
+
+.header-logo h1 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.header-links ul li {
+    margin-left: 20px;
+}
+
+.header-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .header nav ul li {
+        margin: 10px 0;
+    }
 }
 
 /* Search Bar */
@@ -176,8 +250,8 @@ button[onclick="closeProjectUploadDialog()"]:hover {
     display: flex;
     padding: 10px 20px;
     background-color: #fff;
-    margin-top: 10px;
     overflow-x: auto;
+    transition: transform 0.3s ease;
 }
 
 .stories .story {
@@ -209,11 +283,12 @@ button[onclick="closeProjectUploadDialog()"]:hover {
     margin-left: 20px;
     font-size: 24px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-bottom: 10px;
     padding: 10px 15px;
     background-color: #ffffff;
     border-radius: 5px;
+    transition: transform 0.3s ease;
 }
 
 .upload-section {
@@ -251,19 +326,112 @@ button[onclick="closeProjectUploadDialog()"]:hover {
 .grid {
     display: grid;
     flex-direction: column;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
 }
 
+/* Slider Container Styling */
 .slider-container {
-    max-height: 700px; /* Adjust the height as needed */
-    overflow-y: auto; /* Enables vertical scrolling */
-    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-    border-radius: 8px; /* Optional: Round the corners */
-    padding: 10px; /* Optional: Add some padding */
-    background-color: #fff; /* Background color */
+    max-width: 100%;
+    max-height: 700px;
+    overflow-y: auto;
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
+
+/* Slider Content */
+.slider-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Slider Items */
+.slider-container .slider-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.slider-container .slider-item:hover {
+    transform: scale(1.02);
+    background-color: #f5f5f5;
+}
+
+/* Slider Item Image */
+.slider-container .slider-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Slider Item Text */
+.slider-container .slider-item .item-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.slider-container .slider-item .item-description {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+/* Controls */
+.slider-container .controls {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -20px;
+}
+
+.controls button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .slider-container {
+        padding: 10px;
+    }
+
+    .slider-container .slider-item {
+        padding: 10px;
+    }
+
+    .controls button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
 
 .grid-item {
     background-color: #fff;
@@ -274,11 +442,145 @@ button[onclick="closeProjectUploadDialog()"]:hover {
     position: relative;
 }
 
+.grid-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+    box-shadow: inset -5px 0 15px -5px rgba(0, 0, 0, 0.5),
+                inset 5px 0 15px -5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+.image-description {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    display: none;
+    border-radius: 5px;
+    max-width: calc(100% - 20px);
+    max-height: 4.5em;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+}
+
+.image-link:hover .image-description {
+    display: block;
+}
+
+.grid-item:hover .grid-image {
+    filter: brightness(0.8);
+}
+
 .grid-item img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* One column grid */
+    gap: 20px; /* Space between rows */
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-item {
+    display: flex;
+    flex-direction: row;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.project-item img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.details {
+    flex: 1;
+}
+
+.actions {
+    margin-top: 10px;
+    color: #ff5757;
+}
+
+.likes i {
+    color: #007BFF; /* Color for the like icon */
+}
+
+.liked i.fa-heart {
+    color: red;
+}
+
+.comments i {
+    color: #007BFF; /* Color for the comment icon */
+}
+
+.likes, .comments {
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.likes:hover i {
+    color: #ff0000; /* Change color on hover if desired */
+}
+
+.comments:hover i {
+    color: #0056b3;
+}
+
+.likes {
+    margin-right: 20px; /* Adjust spacing as needed */
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.comments {
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.actions button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.actions button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .upload-section {
+        width: 90%;
+    }
+    
+    .upload-section h3 {
+        font-size: 20px;
+    }
+    
+    .upload-section button {
+        width: 100%;
+    }
 }
 
 /* Styling for artist name and actions */
@@ -340,11 +642,15 @@ a:hover {
     text-decoration: none;
 }
 
+/* Footer styling */
 footer {
     background-color: #333;
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom */
+    width: 100%;
+    transition: transform 0.3s ease;
 }
 
 .footer-content {
@@ -391,68 +697,5 @@ footer {
     .footer-content {
         flex-direction: column;
         text-align: center;
-    }
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* One column grid */
-    gap: 20px; /* Space between rows */
-    max-width: 800px; /* Adjust as needed */
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.project-item {
-    display: flex;
-    flex-direction: row;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    padding: 15px;
-}
-
-.project-item img {
-    width: 150px;
-    height: auto;
-    border-radius: 8px;
-    margin-right: 15px;
-}
-
-.details {
-    flex: 1;
-}
-
-.actions {
-    margin-top: 10px;
-}
-
-.actions button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #007BFF;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.actions button:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-    .upload-section {
-        width: 90%;
-    }
-    
-    .upload-section h3 {
-        font-size: 20px;
-    }
-    
-    .upload-section button {
-        width: 100%;
     }
 }
