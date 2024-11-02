@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo Design</title>
-    <link rel="stylesheet" href="/LogoDesign/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="LogoDesign/css/style.css">
 </head>
 <body>
 
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="logo">Logo Design</div>
         <nav>
             <ul>
@@ -24,9 +25,9 @@
         </div>
 
         <div class="project-upload-icon" onclick="openProjectFileChooser()">
-            <img src="/LogoDesign/images/story_icon.png" alt="Upload Project" class="upload-icon">
+            <img src="LogoDesign/images/story_icon.png" alt="Upload Project" class="upload-icon">
         </div>
-        <form action="/LogoDesign/php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
+        <form action="LogoDesign/php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
             <input type="file" name="projectFile" id="projectFile" onchange="showProjectUploadDialog()" required>
         </form>
 
@@ -41,19 +42,21 @@
         </div>
 
         <div class="profile">
-            <img src="/LogoDesign/images/profile.jpg" alt="Profile" class="profile-pic">
+            <img src="LogoDesign/images/profile.jpg" alt="Profile" class="profile-pic">
         </div>
     </header>
 
-   <!-- Profile Stories -->
-<section class="stories">
+    <div class="content">
+
+           <!-- Profile Stories -->
+<section class="stories" id="stories">
     <!-- Story Upload Icon -->
     <div class="story-upload-icon" onclick="openFileChooser()">
-        <img src="/LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
+        <img src="LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
     </div>
 
     <!-- Hidden Upload Form -->
-    <form action="/LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
+    <form action="LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
         <input type="file" name="storyFile" id="storyFile" onchange="showDialogBox()" required>
     </form>
 
@@ -71,26 +74,34 @@
 
     <!-- Existing Stories -->
     <div class="story">
-        <img src="/LogoDesign/images/image1.webp" alt="Story 2">
+        <img src="LogoDesign/images/image1.jpg" alt="Story 2">
     </div>
 </section>
 
+    <!-- Projects Section -->
+    <h2 class="projects-title" id="projects-title">Projects</h2>
+
     <!-- Slider Container -->
-<div class="slider-container">
-    
+<div class="slider-container"> 
+
     <!-- Grid Section -->
     <section class="grid">
 
         <!-- Grid Item 1 -->
         <div class="grid-item">
-            <a href="details.html?id=1" class="image-link">
-                <img src="/LogoDesign/images/image1.webp" alt="Work 1">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image1.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -101,14 +112,19 @@
 
         <!-- Grid Item 2 -->
         <div class="grid-item">
-            <a href="details.html?id=2" class="image-link">
-                <img src="/LogoDesign/images/image2.jpg" alt="Work 2">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image2.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -119,14 +135,19 @@
 
         <!-- Grid Item 3 -->
         <div class="grid-item">
-            <a href="details.html?id=3" class="image-link">
-                <img src="/LogoDesign/images/image3.jpg" alt="Work 3">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image3.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -137,14 +158,19 @@
 
         <!-- Grid Item 4 -->
         <div class="grid-item">
-            <a href="details.html?id=4" class="image-link">
-                <img src="/LogoDesign/images/image4.png" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image4.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -153,16 +179,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 5 -->
         <div class="grid-item">
-            <a href="details.html?id=5" class="image-link">
-                <img src="/LogoDesign/images/image5.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image5.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -171,16 +202,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 6 -->
         <div class="grid-item">
-            <a href="details.html?id=6" class="image-link">
-                <img src="/LogoDesign/images/image6.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image6.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -189,16 +225,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 7 -->
         <div class="grid-item">
-            <a href="details.html?id=7" class="image-link">
-                <img src="/LogoDesign/images/image1.webp" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image7.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -207,16 +248,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 8 -->
         <div class="grid-item">
-            <a href="details.html?id=8" class="image-link">
-                <img src="/LogoDesign/images/image2.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image8.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -225,16 +271,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 9 -->
         <div class="grid-item">
-            <a href="details.html?id=9" class="image-link">
-                <img src="/LogoDesign/images/image3.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image9.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -243,16 +294,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 10 -->
         <div class="grid-item">
-            <a href="details.html?id=10" class="image-link">
-                <img src="/LogoDesign/images/image4.png" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image10.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -261,16 +317,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 11 -->
         <div class="grid-item">
-            <a href="details.html?id=11" class="image-link">
-                <img src="/LogoDesign/images/image5.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image11.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -279,16 +340,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 12 -->
         <div class="grid-item">
-            <a href="details.html?id=12" class="image-link">
-                <img src="/LogoDesign/images/image6.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image12.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -297,16 +363,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 13 -->
         <div class="grid-item">
-            <a href="details.html?id=13" class="image-link">
-                <img src="/LogoDesign/images/image1.webp" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image13.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -315,16 +386,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 14 -->
         <div class="grid-item">
-            <a href="details.html?id=14" class="image-link">
-                <img src="/LogoDesign/images/image2.jpg" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image14.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -333,16 +409,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 15 -->
         <div class="grid-item">
-            <a href="details.html?id=4" class="image-link">
-                <img src="/LogoDesign/images/image4.png" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image15.png" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -351,16 +432,21 @@
             </div>
         </div>
 
-        <!-- Grid Item 4 -->
+        <!-- Grid Item 16 -->
         <div class="grid-item">
-            <a href="details.html?id=4" class="image-link">
-                <img src="/LogoDesign/images/image4.png" alt="Work 4">
+            <a href="details.html?id=1" class="image-link" style="position: relative;">
+                <img src="LogoDesign/images/image16.jpg" alt="Work 1" class="grid-image">
+                <div class="image-description">Work 1 by Irene Laschi: A stunning representation of contemporary art that explores the themes of nature and technology. This piece captivates viewers with its intricate details and vibrant colors, inviting a deep reflection on the harmony between the organic and the mechanical</div>
             </a>
             <div class="details">
                 <p class="artist-name">Irene Laschi</p>
                 <div class="actions">
-                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
-                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                    <span class="likes" onclick="toggleLike(event, this)">
+                        <i class="fas fa-heart"></i> 0
+                    </span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">
+                        <i class="fas fa-comment"></i> 0
+                    </span>
                 </div>
                 <div class="comment-box" style="display: none;">
                     <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
@@ -373,9 +459,10 @@
     </section>
 </div>
 
+    </div>
 
     <!-- Footer -->
-    <footer>
+    <footer id="footer-content">
         <div class="footer-content">
             <div class="footer-logo">
                 <h3>Logo Design</h3>
@@ -397,7 +484,7 @@
         </div>
     </footer>
 
-    <script src="/LogoDesign/js/details.js"></script>
-    <script src="/LogoDesign/js/main.js"></script>
+    <script src="LogoDesign/js/details.js"></script>
+    <script src="LogoDesign/js/mian.js"></script>
 </body>
 </html>
