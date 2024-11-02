@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo Design</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/LogoDesign/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -25,9 +24,9 @@
         </div>
 
         <div class="project-upload-icon" onclick="openProjectFileChooser()">
-            <img src="/LogoDesign/images/story_icon.png" alt="Upload Project" class="upload-icon">
+            <img src="/images/story_icon.png" alt="Upload Project" class="upload-icon">
         </div>
-        <form action="/LogoDesign/php/upload_project.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
+        <form action="php/upload.php" method="POST" enctype="multipart/form-data" id="project-upload-form" style="display: none;">
             <input type="file" name="projectFile" id="projectFile" onchange="showProjectUploadDialog()" required>
         </form>
 
@@ -35,29 +34,26 @@
 
         <div id="project-dailog" class="project-dailog">
             <h3>Upload Project</h3>
-            <input type="text" name="fileNameInput" id="fileNameInput" placeholder="Enter file name..." required maxlength="50">
             <textarea name="projectText" id="projectText" placeholder="Write something about your Project..." required maxlength="50"></textarea>
-            <div id="fileNameDisplay" class="file-name"></div>
             <div id="projectCharCount" class="char-count">0 / 50 characters</div>
             <button onclick="uploadproject()">Upload</button>
             <button onclick="closeProjectUploadDialog()">Cancel</button>
         </div>
 
         <div class="profile">
-            <img src="/LogoDesign/images/image1.webp" alt="Profile" class="profile-pic">
+            <img src="/images/profile.jpg" alt="Profile" class="profile-pic">
         </div>
     </header>
 
-    <!-- Profile Stories -->
-    <section id="stories-section" class="stories">
-
-        <!-- Story Upload Icon -->
+   <!-- Profile Stories -->
+<section class="stories">
+    <!-- Story Upload Icon -->
     <div class="story-upload-icon" onclick="openFileChooser()">
-        <img src="/LogoDesign/images/story_icon.png" alt="Upload Story" class="upload-icon">
+        <img src="/images/story_icon.png" alt="Upload Story" class="upload-icon">
     </div>
 
     <!-- Hidden Upload Form -->
-    <form action="/LogoDesign/php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
+    <form action="php/upload_story.php" method="POST" enctype="multipart/form-data" id="story-upload-form" style="display: none;">
         <input type="file" name="storyFile" id="storyFile" onchange="showDialogBox()" required>
     </form>
 
@@ -73,24 +69,310 @@
         <button onclick="closeDialogBox()">Cancel</button>
     </div>
 
-        <div class="story">
-            <img src="/LogoDesign/images/image1.webp" alt="Story 2">
-        </div>
-        <!-- Add more story items as needed -->
-    </section>
-
-    <!-- Projects Section -->
-    <h2 class="projects-title">Projects</h2>
-
-    <div class="slider-container">
-
-         <!-- Grid Section -->
-    <section id="projects-section" class="grid">
-           
-           <!-- Add more grid items as needed -->
-       </section>
-
+    <!-- Existing Stories -->
+    <div class="story">
+        <img src="/images/image1.webp" alt="Story 2">
     </div>
+</section>
+
+    <!-- Slider Container -->
+<div class="slider-container">
+    
+    <!-- Grid Section -->
+    <section class="grid">
+
+        <!-- Grid Item 1 -->
+        <div class="grid-item">
+            <a href="details.html?id=1" class="image-link">
+                <img src="/images/image1.webp" alt="Work 1">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 2 -->
+        <div class="grid-item">
+            <a href="details.html?id=2" class="image-link">
+                <img src="/images/image2.jpg" alt="Work 2">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 3 -->
+        <div class="grid-item">
+            <a href="details.html?id=3" class="image-link">
+                <img src="/images/image3.jpg" alt="Work 3">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=4" class="image-link">
+                <img src="/images/image4.png" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=5" class="image-link">
+                <img src="/images/image5.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=6" class="image-link">
+                <img src="/images/image6.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=7" class="image-link">
+                <img src="/images/image1.webp" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=8" class="image-link">
+                <img src="/images/image2.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=9" class="image-link">
+                <img src="/images/image3.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=10" class="image-link">
+                <img src="/images/image4.png" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=11" class="image-link">
+                <img src="/images/image5.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=12" class="image-link">
+                <img src="/images/image6.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=13" class="image-link">
+                <img src="/images/image1.webp" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=14" class="image-link">
+                <img src="/images/image2.jpg" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=4" class="image-link">
+                <img src="/images/image4.png" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Item 4 -->
+        <div class="grid-item">
+            <a href="details.html?id=4" class="image-link">
+                <img src="/images/image4.png" alt="Work 4">
+            </a>
+            <div class="details">
+                <p class="artist-name">Irene Laschi</p>
+                <div class="actions">
+                    <span class="likes" onclick="toggleLike(event, this)">1.3K Likes</span>
+                    <span class="comments" onclick="toggleCommentBox(event, this)">105 Comments</span>
+                </div>
+                <div class="comment-box" style="display: none;">
+                    <input type="text" placeholder="Add a comment..." onkeypress="submitComment(event, this)">
+                    <button onclick="submitComment(event, this)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more grid items as needed -->
+    </section>
+</div>
+
 
     <!-- Footer -->
     <footer>
@@ -115,6 +397,7 @@
         </div>
     </footer>
 
-    <script src="/LogoDesign/js/main.js"></script> <!-- Fixed script name -->
+    <script src="/js/details.js"></script>
+    <script src="/js/mian.js"></script>
 </body>
 </html>
