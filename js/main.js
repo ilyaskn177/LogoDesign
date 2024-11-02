@@ -1,19 +1,22 @@
+// Function to open the file chooser for stories
 function openFileChooser() {
     document.getElementById("storyFile").click();
 }
 
+// Function to show the story dialog box
 function showDialogBox() {
     document.getElementById("overlay").style.display = "flex";
     document.getElementById("story-dialog").style.display = "block";
 }
 
+// Function to close the dialog box
 function closeDialogBox() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("story-dialog").style.display = "none";
 }
 
+// Function to upload the story
 function uploadStory() {
-    // Get the file and text
     const fileInput = document.getElementById("storyFile");
     const storyText = document.getElementById("storyText").value;
 
@@ -22,45 +25,61 @@ function uploadStory() {
         return;
     }
 
-    // Show upload form
-    document.getElementById("story-upload-form").style.display = "block";
-
-    // Submit the form
-    document.getElementById("story-upload-form").submit();
-
-    console.log("Uploading project:", projectText);
+    // Here you can process the file and text as needed
+    console.log("Uploading story:", storyText);
+    // Optionally display or process the uploaded story
 }
 
+// Function to open the file chooser for projects
 function openProjectFileChooser() {
     document.getElementById("projectFile").click();
 }
 
+// Function to show the project upload dialog
 function showProjectUploadDialog() {
     document.getElementById("overlay").style.display = "flex";
     document.getElementById("project-dailog").style.display = "block";
 }
 
+// Function to close the project upload dialog
 function closeProjectUploadDialog() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("project-dailog").style.display = "none";
 }
 
-function uploadproject() {
-    const fileInput = document.getElementById("projectFile");
-    const projectText = document.getElementById("projectText").value;
+function uploadProject() {
+    const projectFileInput = document.getElementById('projectFile');
+    const projectText = document.getElementById('projectText').value;
 
-    if (!fileInput.files.length || !projectText) {
-        alert("Please choose a file and write something.");
+    if (projectFileInput.files.length === 0 || projectText.trim() === '') {
+        alert("Please select a project file and write a description.");
         return;
     }
 
-    // Show upload form
-    document.getElementById("project-upload-form").style.display = "block";
+    const formData = new FormData();
+    formData.append('projectFile', projectFileInput.files[0]);
+    formData.append('projectText', projectText);
 
-    // Submit the form to upload_project.php
-    document.getElementById("project-upload-form").submit();
+    fetch('php/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Project uploaded successfully!");
+            // Optionally reset the form and close the dialog
+            closeProjectUploadDialog();
+            document.getElementById('project-upload-form').reset();
+        } else {
+            alert("Upload failed: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred while uploading the project.");
+    });
 }
-
 
 // Function to update character count
 function updateCharCount(textareaId, charCountId) {
@@ -69,15 +88,12 @@ function updateCharCount(textareaId, charCountId) {
     const currentLength = textarea.value.length;
     const maxLength = textarea.getAttribute("maxlength");
 
-    // Ensure maxLength is a valid number
-    if (maxLength) {
-        charCountDisplay.textContent = `${currentLength} / ${maxLength} characters`;
+    charCountDisplay.textContent = maxLength 
+        ? `${currentLength} / ${maxLength} characters` 
+        : `${currentLength} / 0 characters`; // Default case
 
-        // Change color based on character limit status
-        charCountDisplay.style.color = currentLength >= maxLength ? 'red' : 'black';
-    } else {
-        charCountDisplay.textContent = `${currentLength} / 0 characters`; // Default case
-    }
+    // Change color based on character limit status
+    charCountDisplay.style.color = currentLength >= maxLength ? 'red' : 'black';
 }
 
 // Event listeners for character count update
@@ -88,12 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update character count for both textareas
     storyTextarea.addEventListener("input", function() {
         updateCharCount("storyText", "charCount");
-        updateCharCount("projectText", "projectCharCount");
     });
 
     projectTextarea.addEventListener("input", function() {
         updateCharCount("projectText", "projectCharCount");
-        updateCharCount("storyText", "charCount");
     });
 
     // Initialize character count display on page load
@@ -104,14 +118,20 @@ document.addEventListener("DOMContentLoaded", function () {
 // Toggle Like
 function toggleLike(event, element) {
     event.stopPropagation(); // Prevent link navigation
+    const likesText = element.innerText.split(' ')[0];
+    const likesCount = parseInt(likesText.replace('K', '')) || 0;
+    const icon = element.querySelector('i'); // Select the like icon
+
     if (element.classList.contains('liked')) {
         element.classList.remove('liked');
-        let likes = parseInt(element.innerText.split(' ')[0].replace('K', '')) - 1;
-        element.innerText = likes + ' Likes';
+        icon.classList.remove('fas'); // Remove filled heart
+        icon.classList.add('far'); // Add outline heart
+        element.innerHTML = `<i class="far fa-heart"></i> ${likesCount - 1}`;
     } else {
         element.classList.add('liked');
-        let likes = parseInt(element.innerText.split(' ')[0].replace('K', '')) + 1;
-        element.innerText = likes + ' Likes';
+        icon.classList.remove('far'); // Remove outline heart
+        icon.classList.add('fas'); // Add filled heart
+        element.innerHTML = `<i class="fas fa-heart"></i> ${likesCount + 1}`;
     }
 }
 
@@ -137,3 +157,27 @@ function submitComment(event, element) {
         }
     }
 }
+
+let lastScrollTop = 0; // Variable to store the last scroll position
+        const header = document.getElementById('header'); // Get the header element
+        const stories = document.getElementById('stories'); // Get the stories section
+        const projectTitle = document.getElementById("projects-title");
+
+        document.querySelector('.slider-container').addEventListener('scroll', function() {
+            let scrollTop = this.scrollTop; // Get the current scroll position
+
+            // Check if scrolling down
+            if (scrollTop > lastScrollTop) {
+                // Slide header up
+                header.style.transform = 'translateY(-100%)'; // Move header up
+                stories.style.transform = 'translateY(-130%)'; // Show stories
+                projectTitle.style.transform = 'translateY(-180%)';
+            } else {
+                // Slide header down
+                header.style.transform = 'translateY(0)'; // Move header down
+                stories.style.transform = 'translateY(0)'; // Hide stories when header is down
+                projectTitle.style.transform = 'translateY(0%)';
+            }
+
+            lastScrollTop = scrollTop; // Update last scroll position
+        });
