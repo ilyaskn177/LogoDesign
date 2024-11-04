@@ -153,7 +153,7 @@ function showError(message) {
     }, 3000);
 }
 
-const description = document.getElementById('description');
+const description = document.getElementById('imageDescription');
 const charCount = document.getElementById('charCount');
 
 description.addEventListener('input', function() {
@@ -163,7 +163,7 @@ description.addEventListener('input', function() {
 });
 
 function updateCharCount() {
-    const textarea = document.getElementById("description");
+    const textarea = document.getElementById("imageDescription");
     const charCountDisplay = document.getElementById("charCount");
     const currentLength = textarea.value.length;
     const maxLength = textarea.getAttribute("maxlength");
@@ -175,13 +175,26 @@ function updateCharCount() {
     charCountDisplay.style.color = currentLength >= maxLength ? 'red' : 'black';
 }
 
+function updateFileNameCharCount() {
+    const fileNameInput = document.getElementById("fileNameInput");
+    const fileNameCharCountDisplay = document.getElementById("fileNameCharCount");
+    const maxLength = fileNameInput.getAttribute("maxlength");
+    const currentLength = fileNameInput.value.length;
+
+    fileNameCharCountDisplay.textContent = `${currentLength} / ${maxLength} characters`;
+
+    // Change color based on character limit
+    fileNameCharCountDisplay.style.color = currentLength >= maxLength ? 'red' : 'black';
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    const projectTextarea = document.getElementById("description");
+    const projectTextarea = document.getElementById("imageDescription");
+    const fileNameInput = document.getElementById("fileNameInput");
 
     projectTextarea.addEventListener("input", function() {
-        updateCharCount("description", "charCount");
+        updateCharCount("imageDescription", "charCount");
     });
-    updateCharCount("description", "charCount");
+    updateCharCount("imageDescription", "charCount");
 });
 
 // Search functionality
