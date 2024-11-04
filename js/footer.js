@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 <div class="footer-column">
                     <div class="footer-social">
-                        <a href="#" class="social-icon"><img src="images/facebook.png" alt="Facebook"></a>
-                        <a href="#" class="social-icon"><img src="images/twitter.png" alt="Twitter"></a>
-                        <a href="#" class="social-icon"><img src="images/instagram.png" alt="Instagram"></a>
-                        <a href="#" class="social-icon"><img src="images/linkedin.png" alt="LinkedIn"></a>
+                        <a href="#" class="social-icon"><img src="/LogoDesign/images/facebook.png" alt="Facebook"></a>
+                        <a href="#" class="social-icon"><img src="/LogoDesign/images/twitter.png" alt="Twitter"></a>
+                        <a href="#" class="social-icon"><img src="/LogoDesign/images/instagram.png" alt="Instagram"></a>
+                        <a href="#" class="social-icon"><img src="/LogoDesign/images/linkedin.png" alt="LinkedIn"></a>
                     </div>
                 </div>
             </div>
