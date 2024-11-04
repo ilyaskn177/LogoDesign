@@ -21,7 +21,7 @@ function uploadStory() {
     const storyText = document.getElementById("storyText").value;
 
     if (!fileInput.files.length || !storyText) {
-        alert("Please choose a file and write something.");
+        showError("Please choose a file and write something.");
         return;
     }
 
@@ -29,91 +29,6 @@ function uploadStory() {
     console.log("Uploading story:", storyText);
     // Optionally display or process the uploaded story
 }
-
-// Function to open the file chooser for projects
-function openProjectFileChooser() {
-    document.getElementById("projectFile").click();
-}
-
-// Function to show the project upload dialog
-function showProjectUploadDialog() {
-    document.getElementById("overlay").style.display = "flex";
-    document.getElementById("project-dailog").style.display = "block";
-}
-
-// Function to close the project upload dialog
-function closeProjectUploadDialog() {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("project-dailog").style.display = "none";
-}
-
-function uploadProject() {
-    const projectFileInput = document.getElementById('projectFile');
-    const projectText = document.getElementById('projectText').value;
-
-    if (projectFileInput.files.length === 0 || projectText.trim() === '') {
-        alert("Please select a project file and write a description.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('projectFile', projectFileInput.files[0]);
-    formData.append('projectText', projectText);
-
-    fetch('php/upload.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Project uploaded successfully!");
-            // Optionally reset the form and close the dialog
-            closeProjectUploadDialog();
-            document.getElementById('project-upload-form').reset();
-        } else {
-            alert("Upload failed: " + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert("An error occurred while uploading the project.");
-    });
-}
-
-// Function to update character count
-function updateCharCount(textareaId, charCountId) {
-    const textarea = document.getElementById(textareaId);
-    const charCountDisplay = document.getElementById(charCountId);
-    const currentLength = textarea.value.length;
-    const maxLength = textarea.getAttribute("maxlength");
-
-    charCountDisplay.textContent = maxLength 
-        ? `${currentLength} / ${maxLength} characters` 
-        : `${currentLength} / 0 characters`; // Default case
-
-    // Change color based on character limit status
-    charCountDisplay.style.color = currentLength >= maxLength ? 'red' : 'black';
-}
-
-// Event listeners for character count update
-document.addEventListener("DOMContentLoaded", function () {
-    const storyTextarea = document.getElementById("storyText");
-    const projectTextarea = document.getElementById("projectText");
-
-    // Update character count for both textareas
-    storyTextarea.addEventListener("input", function() {
-        updateCharCount("storyText", "charCount");
-    });
-
-    projectTextarea.addEventListener("input", function() {
-        updateCharCount("projectText", "projectCharCount");
-    });
-
-    // Initialize character count display on page load
-    updateCharCount("storyText", "charCount");
-    updateCharCount("projectText", "projectCharCount");
-});
 
 // Toggle Like
 function toggleLike(event, element) {
@@ -142,9 +57,8 @@ function toggleCommentBox(event, element) {
     commentBox.style.display = commentBox.style.display === 'block' ? 'none' : 'block';
 }
 
-// Submit Comment and Close Comment Box
 function submitComment(event, element) {
-    event.stopPropagation(); // Prevent link navigation
+    event.stopPropagation();
     if (event.key === 'Enter' || event.type === 'click') {
         const commentBox = element.closest('.comment-box');
         const commentInput = commentBox.querySelector('input');
@@ -152,32 +66,150 @@ function submitComment(event, element) {
         
         if (commentText) {
             alert(`Comment submitted: ${commentText}`);
-            commentInput.value = ''; // Clear the input after submitting
-            commentBox.style.display = 'none'; // Close the comment box
+            commentInput.value = '';
+            commentBox.style.display = 'none';
         }
     }
 }
 
-let lastScrollTop = 0; // Variable to store the last scroll position
-        const header = document.getElementById('header'); // Get the header element
-        const stories = document.getElementById('stories'); // Get the stories section
-        const projectTitle = document.getElementById("projects-title");
+const imageUpload = document.getElementById('uploadIcon');
+const imageInput = document.getElementById('imageInput');
+const toastAlert = document.getElementById('toastAlert');
+const errorAlert = document.getElementById("errorAlert");
+const closeBtn = document.querySelector('.close-btn');
+const previewImage = document.getElementById('previewImage');
+const dialogOverlay = document.getElementById('dialogOverlay');
+const dialogCloseBtn = document.getElementById('dialogCloseBtn');
+const fileNameInput = document.getElementById('fileNameInput');
+const uploadBtn = document.getElementById('uploadBtn');
 
-        document.querySelector('.slider-container').addEventListener('scroll', function() {
-            let scrollTop = this.scrollTop; // Get the current scroll position
+// Open File Dialog when Select Image Button is clicked
+imageUpload.addEventListener('click', () => {
+    imageInput.click();
+});
 
-            // Check if scrolling down
-            if (scrollTop > lastScrollTop) {
-                // Slide header up
-                header.style.transform = 'translateY(-100%)'; // Move header up
-                stories.style.transform = 'translateY(-130%)'; // Show stories
-                projectTitle.style.transform = 'translateY(-180%)';
-            } else {
-                // Slide header down
-                header.style.transform = 'translateY(0)'; // Move header down
-                stories.style.transform = 'translateY(0)'; // Hide stories when header is down
-                projectTitle.style.transform = 'translateY(0%)';
-            }
+dialogCloseBtn.addEventListener('click', closeDialog);
+cancelBtn.addEventListener('click', closeDialog);
 
-            lastScrollTop = scrollTop; // Update last scroll position
-        });
+imageInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            previewImage.src = e.target.result; 
+        };
+
+        reader.readAsDataURL(file);
+
+        fileNameInput.value = file.name;  // Set default file name in the input
+        dialogOverlay.classList.add('show');
+    }
+});
+
+// Close Dialog Box
+function closeDialog() {
+    dialogOverlay.classList.remove('show');
+    imageInput.value = '';  // Reset file input
+    previewImage.src = '';  // Clear image preview
+    fileNameInput.value = '';  // Clear file name input
+}
+
+// Mock Upload Function
+uploadBtn.addEventListener('click', () => {
+    const description = document.getElementById('imageDescription').value.trim();
+    const fileName = fileNameInput.value.trim();
+    
+    if (!fileName) {
+        showError('Please enter a file name!');
+        return;
+    }
+    
+    if (!description) {
+        showError('Please enter a description!');
+        return;
+    }
+
+    showToast(`Image "${fileName}" uploaded with description: ${description}`);
+    closeDialog();
+});
+
+function showToast(message) {
+    toastAlert.textContent = message;
+    toastAlert.classList.add('show');
+
+    setTimeout(() => {
+        toastAlert.classList.remove('show');
+    }, 3000);
+}
+
+function showError(message) {
+    errorAlert.textContent = message;
+    errorAlert.classList.add('show');
+
+    setTimeout(() => {
+        errorAlert.classList.remove('show');
+    }, 3000);
+}
+
+const description = document.getElementById('description');
+const charCount = document.getElementById('charCount');
+
+description.addEventListener('input', function() {
+    const currentLength = description.value.length;
+    const maxLength = description.getAttribute('maxlength');
+    charCount.textContent = `${currentLength}/${maxLength} characters`;
+});
+
+function updateCharCount() {
+    const textarea = document.getElementById("description");
+    const charCountDisplay = document.getElementById("charCount");
+    const currentLength = textarea.value.length;
+    const maxLength = textarea.getAttribute("maxlength");
+
+    charCountDisplay.textContent = maxLength 
+        ? `${currentLength} / ${maxLength} characters` 
+        : `${currentLength} / 0 characters`;
+
+    charCountDisplay.style.color = currentLength >= maxLength ? 'red' : 'black';
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const projectTextarea = document.getElementById("description");
+
+    projectTextarea.addEventListener("input", function() {
+        updateCharCount("description", "charCount");
+    });
+    updateCharCount("description", "charCount");
+});
+
+// Search functionality
+document.getElementById('searchButton').addEventListener('click', function() {
+    const searchQuery = document.getElementById('searchInput').value.trim();
+    if (searchQuery) {
+        alert(`Searching for "${searchQuery}"...`);
+        // Implement your search logic here
+    } else {
+        alert('Please enter a search query.');
+    }
+});
+
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const mobileNav = document.getElementById('mobileNav');
+
+// Toggle the mobile nav drawer when hamburger menu is clicked
+hamburgerMenu.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+    hamburgerMenu.classList.toggle('active');
+});
+
+// Close the nav when a link is clicked (optional)
+const mobileNavLinks = mobileNav.querySelectorAll('a');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+    });
+});
+
+
