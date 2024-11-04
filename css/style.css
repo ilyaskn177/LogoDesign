@@ -15,18 +15,6 @@ body {
     padding-top: 100px;
 }
 
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.content {
-    flex: 1;
-    height: 1000px;
-}
-
 /* Main Header */
 .main-header {
     position: fixed;
@@ -588,70 +576,6 @@ a {
 a:hover {
     color: #007BFF;
     text-decoration: none;
-}
-
-.footer {
-    background-color: #181818;
-    color: white;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: white;
-    margin-left: -120px;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px;
-}
-
-.footer-section {
-    flex: 1;
-    margin: 0 20px;
-}
-
-.footer-section h2 {
-    margin-bottom: 10px;
-}
-
-.footer-section p, .footer-section ul {
-    margin: 0;
-}
-
-.footer-section ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-}
-
-.footer-section a {
-    color: rgb(211, 211, 211);
-    text-decoration: none;
-}
-
-.footer-section a:hover {
-    text-decoration: none;
-    color: white;
-}
-
-.footer-bottom {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 20px;
 }
 
 .upload-container {
